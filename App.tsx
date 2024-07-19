@@ -1,20 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Providers } from './global/providers';
+import { AddCard } from './feature/card/ui/AddCard';
+import { RemoveCard } from './feature/card/ui/RemoveCard';
+import { CardsPreview } from './entities/card/ui/CardsPreview';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Providers>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="auto" />
+        <View style={styles.container}>
+          <View style={styles.buttonGroup}>
+            <AddCard />
+            <RemoveCard />
+          </View>
+          <CardsPreview />
+        </View>
+      </SafeAreaView>
+    </Providers>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingHorizontal: 4,
+  },
+  buttonGroup: {
+    width: '100%',
+    flexDirection: 'row',
+    gap: 4,
+    marginBottom: 14,
   },
 });
